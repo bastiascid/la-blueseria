@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – La Blueseria Admin</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(200, 130, 10, 0.2) 0%, var(--navy) 70%);
+    }
+
+    .login-wrap {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+    }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .login-logo svg {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+    }
+
+    .login-logo h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    .login-logo h1 span {
+      color: var(--cyan);
+    }
+
+    .login-logo p {
+      color: var(--gray-400);
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    .login-card {
+      background: rgba(26, 13, 4, 0.95);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-icon-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .input-icon-wrap .form-control {
+      padding-left: 42px;
+    }
+
+    .toggle-pass {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--gray-400);
+      background: none;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .toggle-pass:hover {
+      color: var(--white);
+    }
+
+    .login-error {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--danger);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      display: none;
+    }
+
+    .login-error.show {
+      display: block;
+    }
+
+    .login-hint {
+      text-align: center;
+      margin-top: 24px;
+      border-top: 1px solid var(--glass-border);
+      padding-top: 20px;
+    }
+
+    .login-hint p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+    }
+
+    .hint-creds {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hint-chip {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-family: monospace;
+      color: var(--gray-400);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .back-link a {
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      transition: var(--transition);
+    }
+
+    .back-link a:hover {
+      color: var(--cyan);
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--blue);
+      top: -100px;
+      right: -100px;
+      animation: floatOrb 12s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--cyan);
+      bottom: -80px;
+      left: -80px;
+      animation: floatOrb 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatOrb {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(30px, 30px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="login-wrap">
+    <div class="login-logo">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="31" fill="#1a0d04" stroke="#c8a86a" stroke-width="2" />
+        <path d="M24 18 L24 42 Q24 47 28 47 Q32 47 32 42 L32 34 L44 31 L44 22 L32 25 L32 18 Z" fill="#c8820a" />
+        <circle cx="28" cy="45" r="4" fill="#f0b830" />
+        <path d="M37 38 Q41 38 41 34 Q41 30 37 30" stroke="#f0b830" stroke-width="2" fill="none"
+          stroke-linecap="round" />
+        <path d="M41 36 Q46 35 46 30" stroke="#d4a020" stroke-width="2" fill="none" stroke-linecap="round"
+          opacity="0.7" />
+      </svg>
+      <h1 style="font-family:'Oswald',sans-serif;letter-spacing:0.05em;">La <span>BLUESERIA</span></h1>
+      <p>Panel de Administración</p>
+    </div>
+
+    <div class="login-card">
+      <div style="margin-bottom:28px;">
+        <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:6px;">Iniciar sesión</h2>
+        <p style="font-size:0.875rem;color:var(--gray-400);">Ingresa tus credenciales para continuar</p>
+      </div>
+
+      <div class="login-error" id="login-error">❌ Usuario o contraseña incorrectos</div>
+
+      <form class="login-form" id="login-form" autocomplete="off">
+        <div class="form-group">
+          <label class="form-label" for="username">Usuario</label>
+          <div class="input-icon-wrap">
+            <span class="input-icon">👤</span>
+            <input class="form-control" type="text" id="username" placeholder="Ingresa tu usuario"
+              autocomplete="username" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Contraseña</label>
+          <div class="input-icon-wrap">
+            <span class="input-icon">🔒</span>
+            <input class="form-control" type="password" id="password" placeholder="••••••••"
+              autocomplete="current-password" required />
+            <button type="button" class="toggle-pass" id="toggle-pass">👁</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="login-btn"
+          style="width:100%;justify-content:center;gap:10px;">
+          <div class="spinner" id="spinner"></div>
+          <span id="btn-text">Ingresar</span>
+        </button>
+      </form>
+
+      <div class="login-hint">
+        <p>Credenciales de demo:</p>
+        <div class="hint-creds">
+          <span class="hint-chip">admin</span>
+          <span class="hint-chip">blueseria2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="index.html">← Volver a la página principal</a>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="js/auth.js"></script>
+  <script>
+    // If already logged in, redirect
+    if (getSession()) window.location.href = 'dashboard.html';
+
+    const form = document.getElementById('login-form');
+    const errEl = document.getElementById('login-error');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btn-text');
+    const loginBtn = document.getElementById('login-btn');
+    const togglePassBtn = document.getElementById('toggle-pass');
+    const passInput = document.getElementById('password');
+
+    togglePassBtn.addEventListener('click', () => {
+      const isPass = passInput.type === 'password';
+      passInput.type = isPass ? 'text' : 'password';
+      togglePassBtn.textContent = isPass ? '🙈' : '👁';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errEl.classList.remove('show');
+      spinner.style.display = 'block';
+      btnText.textContent = 'Verificando...';
+      loginBtn.disabled = true;
+
+      await new Promise(r => setTimeout(r, 700)); // simulate async
+
+      const username = document.getElementById('username').value.trim();
+      const password = passInput.value;
+      const result = login(username, password);
+
+      if (result.success) {
+        btnText.textContent = '✅ ¡Bienvenido!';
+        showToast(`Bienvenido, ${result.user.name}`, 'success');
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+      } else {
+        spinner.style.display = 'none';
+        btnText.textContent = 'Ingresar';
+        loginBtn.disabled = false;
+        errEl.classList.add('show');
+        passInput.value = '';
+        passInput.focus();
+      }
+    });
+  </script>
+</body>
+
+</html>

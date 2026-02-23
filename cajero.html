@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acceso Cajero – La Blueseria</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(30, 106, 255, 0.2) 0%, var(--navy) 70%);
+        }
+
+        .cajero-wrap {
+            width: 100%;
+            max-width: 440px;
+            padding: 24px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 14px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .logo h1 span {
+            color: var(--cyan);
+        }
+
+        .logo p {
+            color: var(--gray-400);
+            margin-top: 6px;
+            font-size: 0.9rem;
+        }
+
+        .cajero-card {
+            background: rgba(15, 32, 64, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .access-options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .access-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            text-decoration: none;
+            color: var(--white);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .access-card:hover {
+            border-color: var(--cyan);
+            background: rgba(0, 212, 255, 0.07);
+            transform: translateY(-2px);
+        }
+
+        .access-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .access-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .access-desc {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--glass-border);
+            margin: 20px 0;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .input-wrap .form-control {
+            padding-left: 40px;
+        }
+
+        .error-msg {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: var(--danger);
+            border-radius: var(--radius);
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: var(--blue);
+            top: -80px;
+            right: -80px;
+            animation: floatOrb 12s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--cyan);
+            bottom: -60px;
+            left: -60px;
+            animation: floatOrb 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatOrb {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(25px, 25px);
+            }
+        }
+
+        .hint {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 16px;
+        }
+
+        .hint-creds {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .hint-chip {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: 0.78rem;
+            font-family: monospace;
+            color: var(--gray-400);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="cajero-wrap">
+        <div class="logo">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="31" fill="#0f2040" stroke="#00d4ff" stroke-width="2" />
+                <path d="M24 18 L24 42 Q24 47 28 47 Q32 47 32 42 L32 34 L44 31 L44 22 L32 25 L32 18 Z" fill="#1e6aff" />
+                <circle cx="28" cy="45" r="4" fill="#00d4ff" />
+                <path d="M37 38 Q41 38 41 34 Q41 30 37 30" stroke="#00d4ff" stroke-width="2" fill="none"
+                    stroke-linecap="round" />
+                <path d="M41 36 Q46 35 46 30" stroke="#00d4ff" stroke-width="2" fill="none" stroke-linecap="round"
+                    opacity="0.6" />
+            </svg>
+            <h1>La <span>Blue</span>seria</h1>
+            <p>Terminal de Caja</p>
+        </div>
+
+        <div class="cajero-card">
+            <div style="text-align:center;margin-bottom:6px;">
+                <div style="font-size:1.15rem;font-weight:700;">Iniciar sesión</div>
+                <div style="font-size:0.85rem;color:var(--gray-400);margin-top:6px;">Ingresa tus credenciales de cajero
+                </div>
+            </div>
+
+            <div class="error-msg" id="err">❌ Usuario o contraseña incorrectos</div>
+
+            <form class="login-form" id="form" style="margin-top:20px;">
+                <div class="input-wrap">
+                    <span class="input-icon">👤</span>
+                    <input class="form-control" type="text" id="usr" placeholder="Usuario" required
+                        autocomplete="username" />
+                </div>
+                <div class="input-wrap">
+                    <span class="input-icon">🔒</span>
+                    <input class="form-control" type="password" id="pwd" placeholder="Contraseña" required
+                        autocomplete="current-password" />
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+                    🛒 Entrar al Punto de Venta
+                </button>
+            </form>
+
+            <hr class="divider" />
+
+            <div style="margin-bottom:12px;font-size:0.85rem;font-weight:600;color:var(--gray-400);">O acceder
+                directamente como:</div>
+            <div class="access-options">
+                <div class="access-card" onclick="quickAccess('cajero1','caja123')">
+                    <div class="access-icon" style="background:rgba(30,106,255,0.15);">👤</div>
+                    <div>
+                        <div class="access-title">Carlos Pérez</div>
+                        <div class="access-desc">Cajero 1 · Acceso rápido</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--cyan);font-size:1.2rem;">→</div>
+                </div>
+                <div class="access-card" onclick="quickAccess('cajero2','caja456')">
+                    <div class="access-icon" style="background:rgba(0,212,255,0.15);">👤</div>
+                    <div>
+                        <div class="access-title">María López</div>
+                        <div class="access-desc">Cajero 2 · Acceso rápido</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--cyan);font-size:1.2rem;">→</div>
+                </div>
+            </div>
+
+            <div class="hint">
+                <div style="font-size:0.78rem;color:var(--gray-600);">Credenciales manuales:</div>
+                <div class="hint-creds">
+                    <span class="hint-chip">cajero1 / caja123</span>
+                    <span class="hint-chip">cajero2 / caja456</span>
+                    <span class="hint-chip">admin / blueseria2024</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="js/auth.js"></script>
+    <script>
+        // If already logged in, go directly to POS
+        if (getSession()) window.location.href = 'pos.html';
+
+        function quickAccess(user, pass) {
+            const result = login(user, pass);
+            if (result.success) {
+                showToast(`¡Bienvenido/a, ${result.user.name}!`, 'success');
+                setTimeout(() => { window.location.href = 'pos.html'; }, 600);
+            }
+        }
+
+        document.getElementById('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            document.getElementById('err').classList.remove('show');
+            const result = login(
+                document.getElementById('usr').value.trim(),
+                document.getElementById('pwd').value
+            );
+            if (result.success) {
+                showToast(`¡Bienvenido/a, ${result.user.name}!`, 'success');
+                setTimeout(() => { window.location.href = 'pos.html'; }, 600);
+            } else {
+                document.getElementById('err').classList.add('show');
+                document.getElementById('pwd').value = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

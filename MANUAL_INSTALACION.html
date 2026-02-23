@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instalación – La Blueseria</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 32px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--cream);
+            margin: 40px 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            margin: 24px 0 10px;
+        }
+
+        p,
+        li {
+            font-size: 0.95rem;
+            color: var(--gray-400);
+            line-height: 1.75;
+        }
+
+        ul,
+        ol {
+            padding-left: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        code {
+            background: rgba(240, 184, 48, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-size: 0.88rem;
+            color: var(--cyan);
+            font-family: monospace;
+        }
+
+        pre {
+            background: #0d0600;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.88rem;
+            color: var(--cream);
+            line-height: 1.7;
+            margin: 12px 0;
+        }
+
+        .step-card {
+            background: var(--navy-2);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 22px 26px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--navy);
+        }
+
+        .step-body {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .alert {
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .alert-info {
+            background: rgba(240, 184, 48, 0.08);
+            border-left: 4px solid var(--cyan);
+        }
+
+        .alert-success {
+            background: rgba(46, 204, 113, 0.08);
+            border-left: 4px solid var(--success);
+        }
+
+        .alert-warning {
+            background: rgba(231, 76, 60, 0.08);
+            border-left: 4px solid var(--danger);
+        }
+
+        .cred-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        .cred-table th {
+            background: var(--navy-3);
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--cyan);
+        }
+
+        .cred-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--glass-border);
+            font-size: 0.9rem;
+        }
+
+        .cred-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .url-box {
+            background: #0d0600;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-family: monospace;
+            font-size: 0.92rem;
+            color: var(--cyan);
+            margin: 6px 0;
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #111;
+            }
+
+            .step-card {
+                border: 1px solid #ccc;
+            }
+
+            code {
+                background: #f5f5f5;
+                color: #333;
+                border: 1px solid #ddd;
+            }
+
+            pre {
+                background: #f5f5f5;
+                color: #111;
+                border: 1px solid #ddd;
+            }
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: var(--navy);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(200, 130, 10, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo-header">
+        <svg viewBox="0 0 56 56" fill="none" width="56" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="12" width="52" height="32" rx="4" fill="#241206" stroke="#d4a020" stroke-width="1.5" />
+            <rect x="6" y="16" width="44" height="24" rx="2" fill="none" stroke="#c8820a" stroke-width="0.8"
+                opacity="0.5" />
+            <text x="28" y="30" text-anchor="middle" font-family="serif" font-weight="bold" font-size="10"
+                fill="#f0b830">BLUE</text>
+            <path d="M4 22 L8 20 L4 18" stroke="#d4a020" stroke-width="1" fill="none" />
+            <path d="M52 22 L48 20 L52 18" stroke="#d4a020" stroke-width="1" fill="none" />
+            <path d="M28 12 L28 8 M25 8 L28 5 L31 8" stroke="#d4a020" stroke-width="1" fill="none" />
+            <path d="M28 44 L28 48 M25 50 L28 53 L31 50" stroke="#d4a020" stroke-width="1" fill="none" />
+        </svg>
+        <div>
+            <h1 style="margin:0;">Manual de Instalación</h1>
+            <p style="margin:0;color:var(--gray-400);font-size:0.9rem;">La Blueseria – Sistema de Ventas · Versión 1.0
+            </p>
+        </div>
+    </div>
+
+    <div class="alert alert-info">
+        <span>📋</span>
+        <div>Este manual te guía paso a paso para instalar y dejar operativo el sistema desde cero en Windows.
+            No se requieren conocimientos técnicos avanzados. Tiempo estimado: <strong>15–20 minutos</strong>.</div>
+    </div>
+
+    <!-- REQUISITOS -->
+    <h2>🖥️ 1. Requisitos del sistema</h2>
+    <div class="step-card">
+        <div class="step-number">✓</div>
+        <div class="step-body">
+            <div class="step-title">Hardware y Software necesario</div>
+            <ul>
+                <li><strong>Sistema operativo:</strong> Windows 10 u 11 (64-bit)</li>
+                <li><strong>RAM:</strong> 2 GB mínimo (4 GB recomendado)</li>
+                <li><strong>Navegador:</strong> Google Chrome, Microsoft Edge o Firefox (versión reciente)</li>
+                <li><strong>Python 3.x:</strong> Para el servidor de red local (ver paso 2)</li>
+                <li><strong>Red WiFi/LAN:</strong> Necesaria para acceso desde múltiples terminales</li>
+                <li><strong>Conexión a Internet:</strong> Solo para la primera carga (fuentes y gráficos)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PYTHON -->
+    <h2>🐍 2. Instalar Python (si no lo tienes)</h2>
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-body">
+            <div class="step-title">Verificar si Python ya está instalado</div>
+            <p>Abre el <strong>Símbolo del sistema</strong> (busca "cmd" en el menú inicio) y escribe:</p>
+            <pre>python --version</pre>
+            <p>Si aparece <code>Python 3.x.x</code>, ya lo tienes. Salta al paso 3.</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-body">
+            <div class="step-title">Descargar Python</div>
+            <p>Ve a la página oficial y descarga el instalador:</p>
+            <div class="url-box">https://www.python.org/downloads/</div>
+            <p>Haz clic en <strong>"Download Python 3.x.x"</strong> (el botón amarillo grande).</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-body">
+            <div class="step-title">Instalar Python</div>
+            <ol>
+                <li>Ejecuta el archivo descargado (<code>python-3.x.x-amd64.exe</code>)</li>
+                <li><strong style="color:var(--danger);">MUY IMPORTANTE:</strong> Marca la casilla <strong>"Add Python
+                        to PATH"</strong> antes de hacer clic en Install</li>
+                <li>Haz clic en <strong>"Install Now"</strong></li>
+                <li>Espera que termine y cierra el instalador</li>
+            </ol>
+            <div class="alert alert-warning" style="margin-top:12px;">
+                <span>⚠️</span>
+                <div>Si no marcas "Add to PATH", el servidor no funcionará. En ese caso deberás reinstalar marcando la
+                    opción.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COPIAR ARCHIVOS -->
+    <h2>📂 3. Instalar el sistema</h2>
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-body">
+            <div class="step-title">Copiar la carpeta del sistema</div>
+            <p>Copia la carpeta <code>la-blueseria</code> (que contiene todos los archivos del sistema) a una ubicación
+                permanente en tu PC. Se recomienda:</p>
+            <pre>C:\La Blueseria\</pre>
+            <p>Puedes copiarla desde donde está actualmente:</p>
+            <pre>C:\Users\Cristian\.gemini\antigravity\scratch\la-blueseria\</pre>
+            <p>→ Pégala en <code>C:\La Blueseria\</code> para tenerla en un lugar más accesible.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-body">
+            <div class="step-title">Verificar que los archivos estén presentes</div>
+            <p>Dentro de la carpeta <code>la-blueseria</code> debes ver:</p>
+            <pre>📁 la-blueseria\
+├── index.html
+├── login.html
+├── dashboard.html
+├── pos.html
+├── ventas.html
+├── productos.html
+├── reportes.html
+├── cajero.html
+├── server.py
+├── INICIAR_SERVIDOR.bat
+├── 📁 css\
+│   ├── main.css
+│   ├── landing.css
+│   └── admin.css
+└── 📁 js\
+    ├── auth.js
+    └── data.js</pre>
+        </div>
+    </div>
+
+    <!-- USO BÁSICO -->
+    <h2>🌐 4. Uso básico (solo este PC)</h2>
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-body">
+            <div class="step-title">Abrir la página pública</div>
+            <p>Navega a la carpeta <code>la-blueseria</code> y haz doble clic en:</p>
+            <pre>index.html</pre>
+            <p>Se abrirá la página pública de La Blueseria en tu navegador. Esta página la pueden ver tus clientes.</p>
+        </div>
+    </div>
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-body">
+            <div class="step-title">Acceder al panel administrativo</div>
+            <p>Desde la página pública, haz clic en <strong>"Acceso Admin"</strong> en la esquina superior derecha.</p>
+            <p>O abre directamente el archivo:</p>
+            <pre>login.html</pre>
+            <p>Usa las credenciales de administrador:</p>
+            <table class="cred-table">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>admin</code></td>
+                        <td><code>blueseria2024</code></td>
+                        <td>Administrador (acceso completo)</td>
+                    </tr>
+                    <tr>
+                        <td><code>cajero1</code></td>
+                        <td><code>caja123</code></td>
+                        <td>Cajero – Carlos Pérez</td>
+                    </tr>
+                    <tr>
+                        <td><code>cajero2</code></td>
+                        <td><code>caja456</code></td>
+                        <td>Cajero – María López</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ACCESO EN RED -->
+    <h2>📡 5. Acceso desde múltiples computadores (Red local)</h2>
+    <div class="alert alert-info">
+        <span>ℹ️</span>
+        <div>Para usar el sistema desde más de un PC (ej: cajero en otro computador), necesitas iniciar el servidor web
+            local. Todos los PCs deben estar conectados a la misma red WiFi o cable.</div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-body">
+            <div class="step-title">Iniciar el servidor (PC principal)</div>
+            <p>En la carpeta <code>la-blueseria</code>, haz doble clic en:</p>
+            <pre>INICIAR_SERVIDOR.bat</pre>
+            <p>Se abrirá una ventana negra con las URLs de acceso. <strong>Mantén esta ventana abierta</strong> mientras
+                usas el sistema.</p>
+            <div class="alert alert-warning" style="margin-top:12px;">
+                <span>🛡️</span>
+                <div>Si Windows Defender Firewall pregunta si permitir el acceso, haz clic en <strong>"Permitir
+                        acceso"</strong> para redes privadas.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-body">
+            <div class="step-title">Conectarse desde otro PC (terminal cajero)</div>
+            <p>En el otro computador, abre el navegador y escribe la URL que aparece en la ventana negra del servidor.
+                Ejemplo:</p>
+            <div class="url-box">http://192.168.1.26:8080/cajero.html</div>
+            <p>La IP puede variar según tu red. El servidor siempre muestra la IP correcta al iniciarse.</p>
+            <p>En la página <strong>cajero.html</strong> verás botones de acceso rápido para cada cajero → clic y
+                directo al Punto de Venta.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-body">
+            <div class="step-title">Crear un acceso directo en el escritorio (opcional)</div>
+            <p>Para no tener que buscar el archivo cada vez:</p>
+            <ol>
+                <li>Haz clic derecho en <code>INICIAR_SERVIDOR.bat</code></li>
+                <li>Selecciona <strong>"Enviar a → Escritorio (crear acceso directo)"</strong></li>
+                <li>Para el navegador en el otro PC, ve a la URL del cajero y en Chrome presiona <strong>☰ → Más
+                        herramientas → Crear acceso directo</strong></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- CONFIGURACIÓN -->
+    <h2>⚙️ 6. Configuración del sistema</h2>
+
+    <h3>Personalizar usuarios y contraseñas</h3>
+    <p>Abre el archivo <code>js\auth.js</code> con el Bloc de notas y edita la sección <code>USERS</code>:</p>
+    <pre>const USERS = [
+  { username: 'admin', password: 'TU_CLAVE_NUEVA', role: 'Administrador', name: 'Dueño' },
+  { username: 'cajero1', password: 'TU_CLAVE', role: 'Cajero', name: 'Nombre Cajero' },
+];</pre>
+
+    <h3>Cambiar el puerto del servidor</h3>
+    <p>Si el puerto 8080 está ocupado, abre <code>server.py</code> y cambia la línea:</p>
+    <pre>PORT = 8080  ← Cambia este número (ej: 8081, 9000, etc.)</pre>
+
+    <h3>Agregar productos al menú</h3>
+    <p>Ve al panel admin → <strong>Gestión de Productos</strong> → clic en <strong>"+ Nuevo producto"</strong>. Los
+        cambios se guardan automáticamente.</p>
+
+    <!-- DATOS -->
+    <h2>💾 7. Sobre los datos del sistema</h2>
+    <div class="step-card">
+        <div class="step-number">⚠</div>
+        <div class="step-body">
+            <div class="step-title">Almacenamiento en localStorage</div>
+            <p>Los datos (ventas, productos) se guardan en el <strong>almacenamiento local del navegador</strong> de
+                cada PC. Esto significa:</p>
+            <ul>
+                <li>✅ Funciona sin internet ni servidor de base de datos</li>
+                <li>✅ Los datos persisten aunque cierres el navegador</li>
+                <li>⚠️ Los datos son independientes por PC/navegador (cajero 1 y cajero 2 no comparten datos en tiempo
+                    real)</li>
+                <li>⚠️ Si limpias los datos del navegador ("Borrar historial"), se pierden las ventas</li>
+            </ul>
+            <p style="margin-top:12px;">Para exportar las ventas, usa el botón <strong>"⬇ Exportar CSV"</strong> en la
+                página de Historial de Ventas.</p>
+        </div>
+    </div>
+
+    <!-- RESOLUCIÓN PROBLEMAS -->
+    <h2>🔧 8. Solución de problemas frecuentes</h2>
+
+    <div class="step-card">
+        <div class="step-number">?</div>
+        <div class="step-body">
+            <div class="step-title">El servidor no inicia / "python no se reconoce"</div>
+            <p><strong>Causa:</strong> Python no está instalado o no está en el PATH.</p>
+            <p><strong>Solución:</strong> Desinstala Python y vuelve a instalarlo marcando <strong>"Add Python to
+                    PATH"</strong>.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">?</div>
+        <div class="step-body">
+            <div class="step-title">El otro PC no puede conectarse a la URL</div>
+            <p><strong>Causas posibles:</strong></p>
+            <ul>
+                <li>No están en la misma red WiFi — conecta ambos PCs al mismo router</li>
+                <li>El firewall de Windows bloquea la conexión — permite el acceso cuando Windows lo pregunte</li>
+                <li>La IP cambió — reinicia el servidor y mira la IP actualizada</li>
+            </ul>
+            <p><strong>Verificación manual:</strong> Abre CMD y escribe <code>ipconfig</code>. La "Dirección IPv4" es la
+                IP a usar.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">?</div>
+        <div class="step-body">
+            <div class="step-title">El puerto 8080 está en uso</div>
+            <pre>OSError: [WinError 10048] Solo se permite un uso de cada dirección</pre>
+            <p><strong>Solución:</strong> Cambia el puerto en <code>server.py</code> a otro número (ej: 8081) y vuelve a
+                iniciar.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">?</div>
+        <div class="step-body">
+            <div class="step-title">Los gráficos no se muestran</div>
+            <p><strong>Causa:</strong> Sin internet, Chart.js no puede cargarse desde CDN.</p>
+            <p><strong>Solución:</strong> Asegúrate de tener conexión a internet al menos la primera vez. Después, el
+                navegador lo guarda en caché.</p>
+        </div>
+    </div>
+
+    <!-- RESUMEN RÁPIDO -->
+    <h2>⚡ Resumen rápido: Inicio diario</h2>
+    <div class="alert alert-success">
+        <span>✅</span>
+        <div>
+            <strong>Para usar solo en este PC:</strong><br />
+            Abre el archivo <code>login.html</code> → ingresa con tus credenciales → listo.
+            <br /><br />
+            <strong>Para usar con cajeros en otros PCs:</strong><br />
+            1. Doble clic en <code>INICIAR_SERVIDOR.bat</code> (mantener abierto)<br />
+            2. En el PC cajero: abrir navegador → ir a <code>http://[IP]:8080/cajero.html</code><br />
+            3. Al terminar el día: cerrar la ventana negra del servidor
+        </div>
+    </div>
+
+    <br />
+    <div
+        style="text-align:center;padding:32px;border-top:1px solid var(--glass-border);color:var(--gray-600);font-size:0.85rem;">
+        La Blueseria – Sistema de Ventas v1.0 © 2024 &nbsp;·&nbsp; Manual de instalación
+    </div>
+
+    <button class="print-btn" onclick="window.print()">🖨 Imprimir este manual</button>
+
+</body>
+
+</html>

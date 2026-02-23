@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reportes – La Blueseria</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div id="toast-container"></div>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 42 42" fill="none" width="36">
+                    <circle cx="21" cy="21" r="20" fill="#1a0d04" stroke="#c8a86a" stroke-width="1.5" />
+                    <path d="M16 12 L16 28 Q16 31 19 31 Q22 31 22 28 L22 22 L30 20 L30 14 L22 16 L22 12 Z"
+                        fill="#c8820a" />
+                    <circle cx="19" cy="30" r="2.5" fill="#f0b830" />
+                </svg>
+                <span>La <span style="color:var(--cyan)">Blue</span>seria</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Principal</div>
+                <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>Dashboard</a>
+                <a href="pos.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>Punto de Venta</a>
+                <div class="nav-section-label">Reportes</div>
+                <a href="ventas.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg>Historial Ventas</a>
+                <a href="reportes.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>Reportes</a>
+                <div class="nav-section-label">Gestión</div>
+                <a href="productos.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                        <line x1="7" y1="7" x2="7.01" y2="7" />
+                    </svg>Productos</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar"><span id="sidebar-avatar-init">A</span></div>
+                    <div>
+                        <div class="sidebar-user-name" id="sidebar-user-name">–</div>
+                        <div class="sidebar-user-role" id="sidebar-user-role">–</div>
+                    </div>
+                </div>
+                <button onclick="logout()" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;">🚪
+                    Cerrar sesión</button>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="topbar">
+                <div class="topbar-title">📈 Reportes Avanzados</div>
+                <div class="topbar-right">
+                    <span class="topbar-time" id="topbar-time"></span>
+                    <div style="display:flex;gap:8px;">
+                        <button class="period-btn btn btn-primary btn-sm" data-days="7">7 días</button>
+                        <button class="period-btn btn btn-ghost btn-sm" data-days="14">14 días</button>
+                        <button class="period-btn btn btn-ghost btn-sm" data-days="30">30 días</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <!-- KPIs -->
+                <div class="kpi-grid" id="rep-kpis"></div>
+
+                <!-- Trend Line chart -->
+                <div class="chart-card" style="margin-bottom:24px;">
+                    <div class="chart-title">📈 Tendencia de ventas</div>
+                    <div class="chart-subtitle" id="trend-subtitle">Últimos 7 días</div>
+                    <div class="chart-container" style="height:300px;"><canvas id="trendChart"></canvas></div>
+                </div>
+
+                <div class="charts-grid" style="margin-bottom:24px;">
+                    <!-- By Category -->
+                    <div class="chart-card">
+                        <div class="chart-title">Ventas por categoría</div>
+                        <div class="chart-subtitle">En el período seleccionado</div>
+                        <div class="chart-container"><canvas id="catChart2"></canvas></div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="chart-card">
+                        <div class="chart-title">Métodos de pago</div>
+                        <div class="chart-subtitle">Distribución</div>
+                        <div class="chart-container"><canvas id="payChart"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- Top 5 products -->
+                <div class="card-elevated" style="margin-bottom:24px;">
+                    <h3 style="font-size:1rem;font-weight:700;margin-bottom:20px;">🏆 Top 5 Productos más vendidos</h3>
+                    <div id="top-products"></div>
+                </div>
+
+                <!-- Period comparison -->
+                <div class="card-elevated">
+                    <h3 style="font-size:1rem;font-weight:700;margin-bottom:20px;">📊 Comparativa de períodos</h3>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="comparison-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        requireAuth();
+        populateSidebar();
+        startClock();
+
+        let activeDays = 7;
+        let trendChart, catChart2, payChart;
+
+        document.querySelectorAll('.period-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.period-btn').forEach(b => b.className = 'period-btn btn btn-ghost btn-sm');
+                btn.className = 'period-btn btn btn-primary btn-sm';
+                activeDays = parseInt(btn.dataset.days);
+                renderAll();
+            });
+        });
+
+        function getSalesByPeriod(days) {
+            const cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - days);
+            return getSales().filter(s => new Date(s.date) >= cutoff);
+        }
+
+        function renderAll() {
+            const sales = getSalesByPeriod(activeDays);
+            const prevSales = getSalesByPeriod(activeDays * 2).filter(s => {
+                const d = new Date(s.date);
+                const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - activeDays);
+                return d < cutoff;
+            });
+
+            const total = sales.reduce((a, s) => a + s.total, 0);
+            const prevTotal = prevSales.reduce((a, s) => a + s.total, 0);
+            const avgT = sales.length ? total / sales.length : 0;
+            const topSellers = getSalesBySeller();
+
+            document.getElementById('trend-subtitle').textContent = `Últimos ${activeDays} días`;
+
+            // KPIs
+            const change = prevTotal ? ((total - prevTotal) / prevTotal * 100).toFixed(1) : 0;
+            document.getElementById('rep-kpis').innerHTML = `
+      <div class="kpi-card"><div class="kpi-label">Total período</div><div class="kpi-value text-cyan">${formatCLP(total)}</div><div class="kpi-change ${change >= 0 ? 'up' : 'down'}">${change >= 0 ? '↑' : '↓'} ${Math.abs(change)}% vs período anterior</div><div class="kpi-icon" style="background:rgba(0,212,255,0.1);">💰</div></div>
+      <div class="kpi-card"><div class="kpi-label">Nº transacciones</div><div class="kpi-value text-blue">${sales.length}</div><div class="kpi-change up">↑ ${sales.length - prevSales.length} más que antes</div><div class="kpi-icon" style="background:rgba(30,106,255,0.1);">🧾</div></div>
+      <div class="kpi-card"><div class="kpi-label">Ticket promedio</div><div class="kpi-value">${formatCLP(avgT)}</div><div class="kpi-change up">Por venta</div><div class="kpi-icon" style="background:rgba(16,185,129,0.1);">📊</div></div>
+      <div class="kpi-card"><div class="kpi-label">Mejor día</div><div class="kpi-value" style="font-size:1rem;" id="best-day-val">–</div><div class="kpi-change up" id="best-day-total">–</div><div class="kpi-icon" style="background:rgba(245,158,11,0.1);">⭐</div></div>
+    `;
+
+            // Trend chart
+            const dayData = getSalesByDay(activeDays);
+            const bestDay = dayData.reduce((a, b) => b.total > a.total ? b : a, dayData[0]);
+            if (document.getElementById('best-day-val')) {
+                document.getElementById('best-day-val').textContent = bestDay?.label || '–';
+                if (document.getElementById('best-day-total'))
+                    document.getElementById('best-day-total').textContent = bestDay ? formatCLP(bestDay.total) : '';
+            }
+
+            if (trendChart) trendChart.destroy();
+            trendChart = new Chart(document.getElementById('trendChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: dayData.map(d => d.label),
+                    datasets: [{
+                        label: 'Ventas',
+                        data: dayData.map(d => d.total),
+                        borderColor: '#00d4ff', backgroundColor: 'rgba(0,212,255,0.08)',
+                        borderWidth: 2.5, tension: 0.4, fill: true, pointRadius: 4,
+                        pointBackgroundColor: '#00d4ff', pointBorderColor: '#0a1628', pointBorderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', callback: v => '$' + (v / 1000).toFixed(0) + 'K' } }
+                    }
+                }
+            });
+
+            // Category chart
+            const catRaw = {};
+            const products = getProducts();
+            sales.forEach(s => s.items.forEach(item => {
+                const p = products.find(x => x.id === item.id);
+                const cat = p ? p.category : 'Otros';
+                catRaw[cat] = (catRaw[cat] || 0) + item.price * item.qty;
+            }));
+            if (catChart2) catChart2.destroy();
+            catChart2 = new Chart(document.getElementById('catChart2').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(catRaw),
+                    datasets: [{ data: Object.values(catRaw), backgroundColor: ['#1e6aff', '#00d4ff', '#10b981', '#f59e0b'], borderWidth: 0, hoverOffset: 8 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', padding: 12, usePointStyle: true } } } }
+            });
+
+            // Payment methods
+            const payRaw = {};
+            sales.forEach(s => { payRaw[s.payMethod] = (payRaw[s.payMethod] || 0) + 1; });
+            if (payChart) payChart.destroy();
+            payChart = new Chart(document.getElementById('payChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(payRaw),
+                    datasets: [{ data: Object.values(payRaw), backgroundColor: ['#1e6aff', '#10b981', '#f59e0b'], borderWidth: 0, hoverOffset: 8 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', padding: 12, usePointStyle: true } } } }
+            });
+
+            // Top 5 products
+            const prodQty = {};
+            sales.forEach(s => s.items.forEach(item => {
+                prodQty[item.name] = (prodQty[item.name] || 0) + item.qty;
+            }));
+            const top5 = Object.entries(prodQty).sort((a, b) => b[1] - a[1]).slice(0, 5);
+            const maxQty = top5[0]?.[1] || 1;
+            document.getElementById('top-products').innerHTML = top5.map(([name, qty], i) => {
+                const pct = (qty / maxQty * 100).toFixed(0);
+                const emoji = products.find(p => p.name === name)?.emoji || '🍽';
+                return `
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+          <span style="font-size:1.4rem;width:32px;text-align:center;">${emoji}</span>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span class="fw-bold" style="font-size:0.9rem;">${name}</span>
+              <span class="text-cyan fw-bold">${qty} uds.</span>
+            </div>
+            <div style="background:var(--navy-3);border-radius:4px;height:6px;overflow:hidden;">
+              <div style="height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));width:${pct}%;transition:width 0.6s ease;"></div>
+            </div>
+          </div>
+        </div>
+      `;
+            }).join('') || '<div style="color:var(--gray-600);text-align:center;padding:24px;">Sin datos en el período</div>';
+
+            // Comparison
+            document.getElementById('comparison-grid').innerHTML = `
+      <div style="text-align:center;padding:20px;border:1px solid var(--glass-border);border-radius:var(--radius);">
+        <div class="section-eyebrow" style="margin-bottom:12px;">Período actual (${activeDays} días)</div>
+        <div class="kpi-value text-cyan">${formatCLP(total)}</div>
+        <div class="text-muted" style="font-size:0.85rem;margin-top:8px;">${sales.length} ventas</div>
+      </div>
+      <div style="text-align:center;padding:20px;border:1px solid var(--glass-border);border-radius:var(--radius);">
+        <div class="section-eyebrow" style="margin-bottom:12px;">Período anterior (${activeDays} días)</div>
+        <div class="kpi-value text-blue">${formatCLP(prevTotal)}</div>
+        <div class="text-muted" style="font-size:0.85rem;margin-top:8px;">${prevSales.length} ventas</div>
+      </div>
+    `;
+        }
+
+        renderAll();
+    </script>
+</body>
+
+</html>

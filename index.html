@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Blueseria – Fuente de Soda & Shopería</title>
+  <meta name="description"
+    content="La Blueseria, tu fuente de soda y shopería con el mejor ambiente blues de la ciudad. Bebidas artesanales, burgers y más." />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <a href="#inicio" class="navbar-logo">
+      <!-- Vintage badge logo matching La Blueseria real logo style -->
+      <svg viewBox="0 0 48 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="45">
+        <rect x="2" y="5" width="44" height="26" rx="3" fill="#1a0d04" stroke="#c8a86a" stroke-width="1.2" />
+        <rect x="4" y="7" width="40" height="22" rx="2" fill="none" stroke="#d4a020" stroke-width="0.6" opacity="0.7" />
+        <!-- decorative ends -->
+        <path d="M2 14 Q0 14 0 18 Q0 22 2 22" fill="#1a0d04" stroke="#c8a86a" stroke-width="1" />
+        <path d="M46 14 Q48 14 48 18 Q48 22 46 22" fill="#1a0d04" stroke="#c8a86a" stroke-width="1" />
+        <!-- top diamond -->
+        <polygon points="24,2 26,5 24,8 22,5" fill="none" stroke="#c8a86a" stroke-width="0.8" />
+        <!-- bottom diamond -->
+        <polygon points="24,28 26,31 24,34 22,31" fill="none" stroke="#c8a86a" stroke-width="0.8" />
+        <!-- BLUE text in gold -->
+        <text x="24" y="22" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="11"
+          fill="#f0b830" letter-spacing="1">BLUE</text>
+        <!-- top label -->
+        <text x="24" y="11" text-anchor="middle" font-family="Arial,sans-serif" font-size="4.5" fill="#fdf5e8"
+          letter-spacing="1">FUENTE DE SODA</text>
+        <!-- bottom label -->
+        <text x="24" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="4.5" fill="#fdf5e8"
+          letter-spacing="1">SHOPERÍA</text>
+      </svg>
+      <div class="logo-text" style="font-family:'Oswald',sans-serif;letter-spacing:0.04em;">La <span
+          style="color:var(--cyan);">BLUESERIA</span></div>
+    </a>
+
+    <div class="navbar-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#menu">Menú</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <div class="navbar-cta">
+      <a href="login.html" class="btn btn-outline btn-sm">🔐 Acceso Admin</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-particles"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">🎵 Fuente de Soda & Shopería</div>
+      <h1 class="hero-title">
+        Vive el ritmo<br />del <span class="highlight">sabor blues</span>
+      </h1>
+      <p class="hero-subtitle">
+        Batidos artesanales, burgers irresistibles y un ambiente que te hace sentir el blues en cada sorbo. La Blueseria
+        es tu lugar.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary btn-lg">Ver Menú 🍔</a>
+        <a href="#nosotros" class="btn btn-ghost">Conócenos</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">+3K</div>
+          <div class="hero-stat-label">Clientes felices</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">22+</div>
+          <div class="hero-stat-label">Productos únicos</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">5★</div>
+          <div class="hero-stat-label">Calificación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating cards right side -->
+    <div class="hero-visual">
+      <div class="hero-card-float">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="font-size:2rem;">🥤</span>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem;">Milkshake Especial</div>
+            <div style="color:var(--cyan);font-weight:800;font-size:1.1rem;">$3.500</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <span class="badge badge-success">⭐ Favorito</span>
+          <span class="badge badge-cyan">Disponible</span>
+        </div>
+      </div>
+      <div class="hero-card-float" style="margin-left:40px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="font-size:2rem;">🍔</span>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem;">Burger Blueseria</div>
+            <div style="color:var(--cyan);font-weight:800;font-size:1.1rem;">$5.500</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <span class="badge badge-blue">🔥 Top Venta</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MENÚ ========== -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Nuestro menú</div>
+        <h2 class="section-title">Sabores que te hacen vibrar</h2>
+        <p class="section-subtitle">Escoge tu favorito y déjate llevar por el ritmo del sabor</p>
+      </div>
+
+      <div class="menu-tabs" id="menu-tabs">
+        <div class="menu-tab active" data-cat="Todos">Todos</div>
+        <div class="menu-tab" data-cat="Bebidas">🥤 Bebidas</div>
+        <div class="menu-tab" data-cat="Comidas">🍔 Comidas</div>
+        <div class="menu-tab" data-cat="Postres">🍦 Postres</div>
+        <div class="menu-tab" data-cat="Extras">🧀 Extras</div>
+      </div>
+
+      <div class="menu-grid" id="menu-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOSOTROS ========== -->
+  <section id="nosotros">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-eyebrow" style="text-align:left;">Nuestra historia</div>
+          <h2>Más que una shopería,<br />una experiencia</h2>
+          <p>La Blueseria nació de la pasión por la música blues y la gastronomía tradicional. Desde nuestros inicios,
+            hemos creado un espacio donde el buen comer y el buen ambiente van de la mano.</p>
+          <p>Cada producto de nuestro menú es preparado con ingredientes frescos y seleccionados, siguiendo recetas que
+            evocan el alma del blues: profundas, auténticas y llenas de carácter.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">🌿</div>
+              <div>
+                <div style="font-weight:600;margin-bottom:4px;">Ingredientes frescos</div>
+                <div style="font-size:0.85rem;color:var(--gray-400);">Seleccionamos los mejores ingredientes locales
+                  cada día.</div>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🎸</div>
+              <div>
+                <div style="font-weight:600;margin-bottom:4px;">Ambiente blues</div>
+                <div style="font-size:0.85rem;color:var(--gray-400);">Música en vivo los fines de semana. Ven y
+                  disfruta.</div>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">⚡</div>
+              <div>
+                <div style="font-weight:600;margin-bottom:4px;">Atención rápida</div>
+                <div style="font-size:0.85rem;color:var(--gray-400);">Servicio ágil sin sacrificar la calidad.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="about-circle">🎵</div>
+          <div class="about-badge-float">🥤 Desde 2018</div>
+          <div class="about-badge-float">⭐ 4.9/5 clientes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACTO ========== -->
+  <section class="contact-section" id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Encuéntranos</div>
+        <h2 class="section-title">Ven a visitarnos</h2>
+        <p class="section-subtitle">Estamos esperándote con la mejor vibra y los mejores sabores</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="contact-card-icon">📍</div>
+            <div>
+              <div style="font-weight:600;margin-bottom:4px;">Dirección</div>
+              <div style="color:var(--gray-400);font-size:0.9rem;">Av. Principal 1234, Local 5<br />Santiago, Chile
+              </div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">🕐</div>
+            <div>
+              <div style="font-weight:600;margin-bottom:4px;">Horarios</div>
+              <div style="color:var(--gray-400);font-size:0.9rem;">Lunes a Viernes: 10:00 – 22:00<br />Sábado y Domingo:
+                11:00 – 23:00</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">📞</div>
+            <div>
+              <div style="font-weight:600;margin-bottom:4px;">Teléfono & WhatsApp</div>
+              <div style="color:var(--gray-400);font-size:0.9rem;">+56 9 1234 5678</div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">📧</div>
+            <div>
+              <div style="font-weight:600;margin-bottom:4px;">Email</div>
+              <div style="color:var(--gray-400);font-size:0.9rem;">hola@lablueseria.cl</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="contact-map">
+            <div class="map-placeholder" style="text-align:center;">
+              <div style="font-size:4rem;margin-bottom:16px;">🗺️</div>
+              <div style="font-weight:600;color:var(--white);">La Blueseria</div>
+              <div style="font-size:0.85rem;margin-top:8px;">Av. Principal 1234, Santiago</div>
+              <a href="https://maps.google.com" target="_blank" class="btn btn-outline btn-sm"
+                style="margin-top:16px;">Ver en Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-logo" style="margin-bottom:16px;">
+            <svg viewBox="0 0 42 42" fill="none" width="36" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="21" cy="21" r="20" fill="#0f2040" stroke="#00d4ff" stroke-width="1.5" />
+              <path d="M16 12 L16 28 Q16 31 19 31 Q22 31 22 28 L22 22 L30 20 L30 14 L22 16 L22 12 Z" fill="#1e6aff" />
+              <circle cx="19" cy="30" r="2.5" fill="#00d4ff" />
+            </svg>
+            <div style="font-size:1.3rem;font-weight:800;">La <span style="color:var(--cyan)">Blue</span>seria</div>
+          </div>
+          <p>Fuente de soda y shopería con el mejor ambiente blues de la ciudad. Sabor, música y buen ambiente.</p>
+          <div class="footer-socials" style="margin-top:20px;">
+            <a href="#" class="footer-social">📘</a>
+            <a href="#" class="footer-social">📸</a>
+            <a href="#" class="footer-social">🎵</a>
+            <a href="#" class="footer-social">💬</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Menú</h4>
+          <ul>
+            <li><a href="#menu">Bebidas</a></li>
+            <li><a href="#menu">Comidas</a></li>
+            <li><a href="#menu">Postres</a></li>
+            <li><a href="#menu">Extras</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="login.html">Admin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 La Blueseria. Todos los derechos reservados.</span>
+        <span>Hecho con 🎵 y mucho café</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/56912345678" target="_blank" class="whatsapp-fab" title="WhatsApp">💬</a>
+
+  <!-- ========== JS ========== -->
+  <script src="js/data.js"></script>
+  <script>
+    // Populate menu from data
+    const menuGrid = document.getElementById('menu-grid');
+    const menuTabs = document.querySelectorAll('.menu-tab');
+
+    function renderMenu(cat) {
+      const prods = getProducts().filter(p => p.active && (cat === 'Todos' || p.category === cat));
+      menuGrid.innerHTML = prods.map(p => `
+      <div class="menu-item">
+        <div class="menu-item-img">${p.emoji}</div>
+        <div class="menu-item-body">
+          <div class="menu-item-name">${p.name}</div>
+          <div class="menu-item-desc">${getCatDesc(p.category)}</div>
+          <div class="menu-item-price">${formatCLP(p.price)}</div>
+        </div>
+      </div>
+    `).join('');
+    }
+
+    function getCatDesc(cat) {
+      const map = {
+        'Bebidas': 'Bebida refrescante preparada fresca.',
+        'Comidas': 'Preparado al momento con ingredientes frescos.',
+        'Postres': 'El toque dulce que completa tu experiencia.',
+        'Extras': 'Complementa tu pedido al gusto.',
+      };
+      return map[cat] || '';
+    }
+
+    menuTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        menuTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderMenu(tab.dataset.cat);
+      });
+    });
+
+    renderMenu('Todos');
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.style.background = window.scrollY > 50
+        ? 'rgba(10,22,40,0.98)'
+        : 'rgba(10,22,40,0.85)';
+    });
+  </script>
+</body>
+
+</html>
