@@ -198,3 +198,76 @@ function formatCLP(amount) {
 function formatDateShort(isoStr) {
     return new Date(isoStr).toLocaleString('es-CL', { dateStyle: 'short', timeStyle: 'short' });
 }
+
+/* ---- Export / Import (Backup) ---- */
+
+/**
+ * Exporta productos y ventas como archivo JSON (backup completo)
+ */
+function exportDataJSON() {
+    const data = {
+        exportedAt: new Date().toISOString(),
+        version: (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.version : '2.0',
+        products: getProducts(),
+        sales: getSales()
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `backup_blueseria_${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    if (typeof showToast === 'function') showToast('Backup JSON exportado correctamente', 'success');
+}
+
+/**
+ * Exporta las ventas del período visible como archivo CSV
+ */
+function exportSalesCSV(sales) {
+    const rows = sales || getSales();
+    const headers = ['ID', 'Fecha', 'Vendedor', 'Productos', 'Total', 'Método de Pago', 'Estado'];
+    const lines = rows.map(s => [
+        s.id,
+        formatDateShort(s.date),
+        s.seller,
+        s.items.map(i => `${i.qty}x ${i.name}`).join(' | '),
+        s.total,
+        s.payMethod,
+        s.status
+    ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','));
+    const csv = [headers.join(','), ...lines].join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ventas_blueseria_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    if (typeof showToast === 'function') showToast('Ventas exportadas en CSV', 'success');
+}
+
+/**
+ * Importa un backup JSON y restaura productos y ventas
+ * @param {File} file  Archivo .json seleccionado por el usuario
+ */
+function importDataJSON(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const data = JSON.parse(e.target.result);
+            if (!data.products || !data.sales) throw new Error('Formato inválido');
+            if (confirm(`¿Restaurar backup del ${new Date(data.exportedAt).toLocaleDateString('es-CL')}?\nEsto reemplazará los datos actuales.`)) {
+                localStorage.setItem(PRODUCTS_KEY, JSON.stringify(data.products));
+                localStorage.setItem(SALES_KEY, JSON.stringify(data.sales));
+                if (typeof showToast === 'function') showToast('Backup restaurado correctamente', 'success');
+                setTimeout(() => location.reload(), 1200);
+            }
+        } catch (err) {
+            if (typeof showToast === 'function') showToast('Error al leer el archivo de backup', 'error');
+        }
+    };
+    reader.readAsText(file);
+}
+

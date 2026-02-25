@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema POS · Panel de Punto de Venta para Negocios</title>
+    <meta name="description"
+        content="Sistema POS completo para fuentes de soda, cafeterías y restaurantes. Punto de venta, reportes, gestión de productos y control de ventas." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/landing.css" />
+    <script src="js/config.js"></script>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <svg viewBox="0 0 42 42" fill="none" width="32">
+                    <circle cx="21" cy="21" r="20" fill="#1a0d04" stroke="#c8a86a" stroke-width="1.5" />
+                    <path d="M16 12 L16 28 Q16 31 19 31 Q22 31 22 28 L22 22 L30 20 L30 14 L22 16 L22 12 Z"
+                        fill="#c8820a" />
+                    <circle cx="19" cy="30" r="2.5" fill="#f0b830" />
+                </svg>
+                <span id="nav-biz-name">Sistema POS</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Características</a>
+                <a href="#screens">Vistas</a>
+                <a href="#pricing">Licencia</a>
+                <a href="login.html" class="btn-nav">Acceder →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+        <div class="hero-inner">
+            <div class="badge">✦ Sistema POS Profesional</div>
+            <h1 id="hero-title">Sistema de Punto de Venta</h1>
+            <p class="hero-sub" id="hero-sub">Control completo de ventas, productos y reportes para tu negocio. Funciona
+                en el navegador, sin instalación de servidores.</p>
+            <div class="hero-cta">
+                <a href="login.html" class="btn-primary-lg">🚀 Ver Demo en Vivo</a>
+                <a href="MANUAL_INSTALACION.html" class="btn-outline-lg">📖 Instrucciones</a>
+            </div>
+            <div class="hero-note">
+                ⚡ Sin servidor requerido · 🔒 Datos locales seguros · 🎨 Personalizable
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-label">Funcionalidades</div>
+            <h2 class="section-title">Todo lo que necesitas para operar</h2>
+            <div class="features-grid">
+                <div class="feat-card">
+                    <div class="feat-icon">🛒</div>
+                    <h3>Punto de Venta</h3>
+                    <p>Interfaz de caja rápida con búsqueda de productos, categorías y múltiples métodos de pago
+                        (efectivo, tarjeta, transferencia, QR).</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">📦</div>
+                    <h3>Gestión de Productos</h3>
+                    <p>Agrega, edita y activa/desactiva productos con precio, categoría y emoji. Catálogo visual fácil
+                        de gestionar.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">📈</div>
+                    <h3>Reportes Avanzados</h3>
+                    <p>Gráficos de tendencias, ventas por categoría, métodos de pago y top 5 productos. Períodos de 7,
+                        14 y 30 días.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">💾</div>
+                    <h3>Backup de Datos</h3>
+                    <p>Exporta tus ventas y productos en CSV o JSON. Importa backups para restaurar datos en un clic.
+                    </p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🔐</div>
+                    <h3>Multi-usuario</h3>
+                    <p>Roles de Administrador y Cajero. Credenciales configurables en 1 archivo. Historial de ventas por
+                        vendedor.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🎨</div>
+                    <h3>Personalizable</h3>
+                    <p>Cambia nombre del negocio, colores y usuarios editando un solo archivo <code>config.js</code>.
+                        Sin conocimientos de programación avanzados.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🌐</div>
+                    <h3>Sin Instalación</h3>
+                    <p>Abre el archivo en el navegador y listo. También soporta acceso desde múltiples PCs en la misma
+                        red con Python.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon">🧾</div>
+                    <h3>Historial de Ventas</h3>
+                    <p>Registro completo de cada transacción: productos, vendedor, monto, método de pago y hora.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREENS -->
+    <section class="section section-dark" id="screens">
+        <div class="container">
+            <div class="section-label">Interfaz</div>
+            <h2 class="section-title">Diseño moderno y profesional</h2>
+            <div class="screens-grid">
+                <div class="screen-card">
+                    <div class="screen-tag">Panel Principal</div>
+                    <div class="screen-mock dashboard-mock">
+                        <div class="mock-topbar"><span>📊 Dashboard</span><span class="mock-time">12:34</span></div>
+                        <div class="mock-kpis">
+                            <div class="mock-kpi">
+                                <div class="mock-kpi-val">$248.500</div>
+                                <div class="mock-kpi-lbl">Ventas hoy</div>
+                            </div>
+                            <div class="mock-kpi">
+                                <div class="mock-kpi-val">32</div>
+                                <div class="mock-kpi-lbl">Transacciones</div>
+                            </div>
+                            <div class="mock-kpi">
+                                <div class="mock-kpi-val">$7.765</div>
+                                <div class="mock-kpi-lbl">Ticket promedio</div>
+                            </div>
+                        </div>
+                        <div class="mock-chart-bar">
+                            <div style="height:40%"></div>
+                            <div style="height:65%"></div>
+                            <div style="height:80%"></div>
+                            <div style="height:55%"></div>
+                            <div style="height:90%"></div>
+                            <div style="height:70%"></div>
+                            <div style="height:100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-tag">Punto de Venta</div>
+                    <div class="screen-mock pos-mock">
+                        <div class="mock-topbar"><span>🛒 Caja</span><span style="font-size:0.7rem;color:#10b981;">● En
+                                línea</span></div>
+                        <div class="mock-products">
+                            <div class="mock-prod">🌭<span>Completo</span><span>$3.200</span></div>
+                            <div class="mock-prod">🍔<span>Hamburguesa</span><span>$4.500</span></div>
+                            <div class="mock-prod active-prod">🥤<span>Coca-Cola</span><span>$1.800</span></div>
+                            <div class="mock-prod">🍟<span>Papas Fritas</span><span>$2.200</span></div>
+                        </div>
+                        <div class="mock-total">Total: <strong>$9.500</strong></div>
+                    </div>
+                </div>
+                <div class="screen-card">
+                    <div class="screen-tag">Reportes</div>
+                    <div class="screen-mock rep-mock">
+                        <div class="mock-topbar"><span>📈 Reportes</span></div>
+                        <div class="mock-bars">
+                            <div class="bar-wrap">
+                                <div class="bar-fill" style="height:60%"></div><span>Lun</span>
+                            </div>
+                            <div class="bar-wrap">
+                                <div class="bar-fill" style="height:80%"></div><span>Mar</span>
+                            </div>
+                            <div class="bar-wrap">
+                                <div class="bar-fill b2" style="height:45%"></div><span>Mié</span>
+                            </div>
+                            <div class="bar-wrap">
+                                <div class="bar-fill" style="height:95%"></div><span>Jue</span>
+                            </div>
+                            <div class="bar-wrap">
+                                <div class="bar-fill b2" style="height:70%"></div><span>Vie</span>
+                            </div>
+                            <div class="bar-wrap">
+                                <div class="bar-fill" style="height:100%"></div><span>Sáb</span>
+                            </div>
+                            <div class="bar-wrap">
+                                <div class="bar-fill b2" style="height:55%"></div><span>Dom</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH -->
+    <section class="section" id="tech">
+        <div class="container">
+            <div class="section-label">Tecnología</div>
+            <h2 class="section-title">Simple, rápido y confiable</h2>
+            <div class="tech-list">
+                <div class="tech-item"><span>🌐</span>
+                    <div><strong>HTML5 + CSS3 + JavaScript</strong>
+                        <p>Sin frameworks, sin dependencias pesadas. Carga instantánea en cualquier navegador.</p>
+                    </div>
+                </div>
+                <div class="tech-item"><span>📊</span>
+                    <div><strong>Chart.js</strong>
+                        <p>Gráficos interactivos para reportes y paneles. Incluido via CDN.</p>
+                    </div>
+                </div>
+                <div class="tech-item"><span>💾</span>
+                    <div><strong>localStorage + Backup JSON/CSV</strong>
+                        <p>Datos locales seguros. Exporta backup en cualquier momento.</p>
+                    </div>
+                </div>
+                <div class="tech-item"><span>🐍</span>
+                    <div><strong>Python HTTP Server (opcional)</strong>
+                        <p>Para acceso desde múltiples equipos en la misma red local.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING / LICENSE -->
+    <section class="section section-dark" id="pricing">
+        <div class="container">
+            <div class="section-label">Licencia</div>
+            <h2 class="section-title">Úsalo en tu negocio</h2>
+            <div class="pricing-card">
+                <div class="pricing-badge">Licencia Comercial</div>
+                <div class="pricing-price">Única compra</div>
+                <ul class="pricing-list">
+                    <li>✅ Uso en 1 negocio / sucursal</li>
+                    <li>✅ Personalización completa (nombre, colores, usuarios)</li>
+                    <li>✅ Actualizaciones incluidas</li>
+                    <li>✅ Soporte por correo electrónico</li>
+                    <li>✅ Sin suscripción mensual</li>
+                    <li>❌ No se permite redistribución ni reventa</li>
+                </ul>
+                <a href="login.html" class="btn-primary-lg" style="display:inline-block;margin-top:24px;">Ver demo →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo" id="footer-biz">Sistema POS</div>
+            <p>Desarrollado con ❤️ por <a href="https://github.com/bastiascid" target="_blank">Bastián Scid</a></p>
+            <p style="font-size:0.78rem;margin-top:8px;color:#4a5568;">Licencia comercial · Todos los derechos
+                reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Aplicar nombre de negocio desde config
+        if (typeof APP_CONFIG !== 'undefined') {
+            document.querySelectorAll('#nav-biz-name, #footer-biz').forEach(el => el.textContent = APP_CONFIG.business_name);
+            document.getElementById('hero-title').textContent = 'Sistema POS · ' + APP_CONFIG.business_name;
+            document.getElementById('hero-sub').textContent =
+                `Gestión completa de ventas, productos y reportes para ${APP_CONFIG.business_name}. Punto de venta rápido, sin instalación de servidores.`;
+        }
+
+        // Sticky nav
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('nav-scrolled', window.scrollY > 40);
+        });
+    </script>
+</body>
+
+</html>

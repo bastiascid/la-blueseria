@@ -1,19 +1,19 @@
 /* =============================================
    AUTH.JS - La Blueseria Authentication
+   Lee usuarios desde js/config.js
    ============================================= */
 
 const AUTH_KEY = 'blueseria_auth';
-const USERS = [
-  { username: 'admin', password: 'blueseria2024', role: 'Administrador', name: 'Administrador' },
-  { username: 'cajero1', password: 'caja123', role: 'Cajero', name: 'Carlos Pérez' },
-  { username: 'cajero2', password: 'caja456', role: 'Cajero', name: 'María López' },
-];
+
+// Usuarios definidos en config.js (APP_CONFIG.users)
+function getUsers() {
+  return (typeof APP_CONFIG !== 'undefined' && APP_CONFIG.users) ? APP_CONFIG.users : [];
+}
 
 function login(username, password) {
-  const user = USERS.find(u => u.username === username && u.password === password);
+  const user = getUsers().find(u => u.username === username && u.password === password);
   if (user) {
-    const session = { ...user, loginAt: Date.now() };
-    delete session.password;
+    const session = { username: user.username, role: user.role, name: user.name, loginAt: Date.now() };
     localStorage.setItem(AUTH_KEY, JSON.stringify(session));
     return { success: true, user: session };
   }
@@ -48,12 +48,19 @@ function isAdmin() {
 function populateSidebar() {
   const s = getSession();
   if (!s) return;
+
+  // Nombre del negocio desde config
+  const bizName = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.business_name : 'Sistema POS';
+
   const nameEl = document.getElementById('sidebar-user-name');
   const roleEl = document.getElementById('sidebar-user-role');
   const initEl = document.getElementById('sidebar-avatar-init');
+  const brandEl = document.getElementById('sidebar-brand-name');
+
   if (nameEl) nameEl.textContent = s.name;
   if (roleEl) roleEl.textContent = s.role;
   if (initEl) initEl.textContent = s.name.charAt(0).toUpperCase();
+  if (brandEl) brandEl.textContent = bizName;
 }
 
 // Toast notifications

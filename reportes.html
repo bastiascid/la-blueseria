@@ -74,10 +74,17 @@
                 <div class="topbar-title">📈 Reportes Avanzados</div>
                 <div class="topbar-right">
                     <span class="topbar-time" id="topbar-time"></span>
-                    <div style="display:flex;gap:8px;">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
                         <button class="period-btn btn btn-primary btn-sm" data-days="7">7 días</button>
                         <button class="period-btn btn btn-ghost btn-sm" data-days="14">14 días</button>
                         <button class="period-btn btn btn-ghost btn-sm" data-days="30">30 días</button>
+                        <button class="btn btn-ghost btn-sm" onclick="exportSalesCSV()" title="Exportar ventas a CSV">📥
+                            CSV</button>
+                        <button class="btn btn-ghost btn-sm" onclick="exportDataJSON()"
+                            title="Exportar backup completo">💾 Backup</button>
+                        <label class="btn btn-ghost btn-sm" title="Restaurar backup" style="cursor:pointer;margin:0;">📤
+                            Importar<input type="file" accept=".json" style="display:none"
+                                onchange="importDataJSON(this.files[0])"></label>
                     </div>
                 </div>
             </header>
@@ -124,6 +131,7 @@
         </div>
     </div>
 
+    <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/data.js"></script>
     <script>
